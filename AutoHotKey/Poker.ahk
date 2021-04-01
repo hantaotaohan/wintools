@@ -1,8 +1,11 @@
 ;=====================================================================o
 ;                       CapsLock Initializer                         ;|
 ;---------------------------------------------------------------------o
+#Persistent
+#SingleInstance, Force
+SetKeyDelay, -1
 SetCapsLockState, AlwaysOff                                          ;| 
-#HotkeyInterval 2000                                                         ;|
+#HotkeyInterval 2000                                                 ;|
 #MaxHotkeysPerInterval 200                                           ;|
 #If GetKeyState("CapsLock", "p")                                     ;|
 ;---------------------------------------------------------------------o
@@ -73,25 +76,25 @@ n::BS                                                                ;|
 ;=====================================================================o
 ;                       CapsLock A-Z Initializer                     ;|
 ;---------------------------------------------------------------------o
-a:: ^a                                                               ;|
+a:: HOME                                                             ;|
 b:: ^b                                                               ;|
 c:: ^c                                                               ;|
-d:: ^d                                                               ;|
-e:: ^e                                                               ;|
+d:: PgDn                                                             ;|
+e:: END                                                              ;|
 f:: ^f                                                               ;|
 g:: ^g                                                               ;|
-i:: ^i                                                               ;|
+i:: F2                                                               ;|
 o:: ^o                                                               ;|
-p:: ^p                                                               ;|
-q:: ^q                                                               ;|
+p:: ^v                                                               ;|
+;q:: ^q                                                               ;|
 r:: ^r                                                               ;|
 s:: ^s                                                               ;|
 t:: ^t                                                               ;|
-u:: ^u                                                               ;|
+u:: PgUp                                                             ;|
 v:: ^v                                                               ;|
 w:: ^w                                                               ;|
 x:: ^x                                                               ;|
-y:: ^y                                                               ;|
+y:: ^c                                                               ;|
 z:: ^z                                                               ;|
 ;---------------------------------------------------------------------o
 
@@ -100,7 +103,7 @@ z:: ^z                                                               ;|
 ;-----------------------------------o---------------------------------o
 ;                                                                    ;|
 ;---------------------------------------------------------------------o
-[:: ^[                                                               ;|
+[:: Esc                                                               ;|
 ;---------------------------------------------------------------------o
 /:: ^f                                                               ;|
 ;---------------------------------------------------------------------o
@@ -165,4 +168,107 @@ return                                                               ;|
 ;^+e::                                                               ;|
 ;Run excel.exe,,UseErrorLevel                                        ;|
 ;return                                                              ;|
+;---------------------------------------------------------------------o
+;
+;=====================================================================o
+;                            Total Commandes                         ;|
+;-----------------------------------o---------------------------------o
+#IfWinActive ahk_exe TOTALCMD64.EXE ahk_class TTOTAL_CMD             ;|
+IsLastKey(key)                                                       ;|
+{                                                                    ;|
+return (A_PriorHotkey == key and A_TimeSincePriorHotkey < 400)       ;|
+}                                                                    ;|
+;-----------------------------------o---------------------------------o
+h::                                                                  ;|  
+ControlGetFocus, ctrl                                                ;|  
+if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|
+Send, {Backspace}                                                    ;|   
+else                                                                 ;|
+Send, h                                                              ;|
+return                                                               ;|
+;-----------------------------------o---------------------------------o
+j::                                                                  ;|  
+ControlGetFocus, ctrl                                                ;|  
+if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
+Send, {Down}                                                         ;|
+else                                                                 ;|  
+Send, j                                                              ;|  
+return                                                               ;|  
+;-----------------------------------o---------------------------------o
+k::                                                                  ;|  
+ControlGetFocus, ctrl                                                ;|  
+if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
+Send, {Up}                                                           ;|
+else                                                                 ;|  
+Send, k                                                              ;|  
+return                                                               ;|  
+;-----------------------------------o---------------------------------o
+l::                                                                  ;|  
+ControlGetFocus, ctrl                                                ;|  
+if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
+Send, {Enter}                                                        ;|
+else                                                                 ;|  
+Send, l                                                              ;|  
+return                                                               ;|  
+;-----------------------------------o---------------------------------o
+g::                                                                  ;|
+ControlGetFocus, ctrl                                                ;|  
+if IsLastKey("g") && (ctrl == "LCLListBox2" )                        ;|   
+|| (ctrl == "LCLListBox1" )                                          ;|   
+{                                                                    ;|
+Send, {Home}                                                         ;|
+}                                                                    ;|
+else                                                                 ;|  
+Send, g                                                              ;|  
+return                                                               ;|
+;-----------------------------------o---------------------------------o
++g::                                                                 ;|
+ControlGetFocus, ctrl                                                ;|  
+if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
+Send, {END}                                                          ;|
+else                                                                 ;|  
+Send, G                                                              ;|  
+return                                                               ;|
+;-----------------------------------o---------------------------------o
+i::                                                                  ;|
+ControlGetFocus, ctrl                                                ;|  
+if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
+send +{F6}                                                           ;|
+else                                                                 ;|  
+Send, i                                                              ;|  
+return                                                               ;|
+;-----------------------------------o---------------------------------o
+d::                                                                  ;|
+ControlGetFocus, ctrl                                                ;|  
+if IsLastKey("d") && (ctrl == "LCLListBox2" )                        ;|   
+|| (ctrl == "LCLListBox1" )                                          ;|   
+{                                                                    ;|
+Send, {F8}                                                           ;|
+}                                                                    ;|
+else                                                                 ;|  
+Send, F8                                                             ;|  
+return                                                               ;|
+;-----------------------------------o---------------------------------o
+c::                                                                  ;|
+ControlGetFocus, ctrl                                                ;|  
+if IsLastKey("c") && (ctrl == "LCLListBox2" )                        ;|   
+|| (ctrl == "LCLListBox1" )                                          ;|   
+{                                                                    ;|
+Send, !{g}                                                           ;|
+Send,{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}         ;|
+}                                                                    ;|
+else                                                                 ;|  
+Send, c                                                              ;|  
+return                                                               ;|
+;-----------------------------------o---------------------------------o
+sc027:: `;                                                           ;|  
+sc027 & q::                                                          ;| 
+Send, !{F4}                                                          ;|  
+sc027 & f::                                                          ;| 
+Send, !{F7}                                                          ;|  
+sc027 & e::                                                          ;| 
+Send, ^{d}{Down}{Enter}                                              ;|  
+return                                                               ;|  
+;-----------------------------------o---------------------------------o
+#IfWinActive                                                         ;|
 ;---------------------------------------------------------------------o
