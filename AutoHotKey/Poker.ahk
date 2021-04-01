@@ -1,9 +1,9 @@
 ;=====================================================================o
 ;                       CapsLock Initializer                         ;|
 ;---------------------------------------------------------------------o
-#Persistent
-#SingleInstance, Force
-SetKeyDelay, -1
+#Persistent                                                          ;|
+#SingleInstance, Force                                               ;|
+SetKeyDelay, -1                                                      ;|
 SetCapsLockState, AlwaysOff                                          ;| 
 #HotkeyInterval 2000                                                 ;|
 #MaxHotkeysPerInterval 200                                           ;|
@@ -86,7 +86,7 @@ g:: ^g                                                               ;|
 i:: F2                                                               ;|
 o:: ^o                                                               ;|
 p:: ^v                                                               ;|
-;q:: ^q                                                               ;|
+q:: ^q                                                               ;|
 r:: ^r                                                               ;|
 s:: ^s                                                               ;|
 t:: ^t                                                               ;|
@@ -103,11 +103,11 @@ z:: ^z                                                               ;|
 ;-----------------------------------o---------------------------------o
 ;                                                                    ;|
 ;---------------------------------------------------------------------o
-[:: Esc                                                               ;|
+[:: Esc                                                              ;|
 ;---------------------------------------------------------------------o
 /:: ^f                                                               ;|
 ;---------------------------------------------------------------------o
-sc027:: AppsKey                                                         ;|
+sc027:: AppsKey                                                      ;|
 ;---------------------------------------------------------------------o
 esc:: `                                                              ;|
 ;---------------------------------------------------------------------o
@@ -132,26 +132,26 @@ return                                                               ;|
 ;-----------------------------------o---------------------------------o
 ;                            Ctrl + Shift + P                        ;|
 ;---------------------------------------------------------------------o
-;^+p::                                                               ;|
+!Enter::                                                             ;|
 ;---------------------------------------------------------------------o
-;If WinActive("ahk_class CabinetWClass")                             ;|  
-;|| WinActive("ahk_class ExploreWClass")                             ;| 
-;|| WinActive("ahk_class WorkerW")                                   ;| 
-;{                                                                   ;|
-;WinHWND := WinActive()                                              ;|
-;For win in ComObjCreate("Shell.Application").Windows                ;|
-;If (win.HWND = WinHWND)                                             ;|
-;{                                                                   ;|
-;dir := SubStr(win.LocationURL, 9)                                   ;|
-;dir := RegExReplace(dir, "%20", " ")                                ;|
-;Break                                                               ;|
-;}                                                                   ;| 
-;Run Powershell -nolog, % dir ? dir: A_Desktop                       ;|
-;}                                                                   ;|
-;else{                                                               ;|
-;Run Powershell -nolog, % dir ? dir: A_Desktop                       ;| 
-;}                                                                   ;|
-;return                                                              ;|
+If WinActive("ahk_class CabinetWClass")                              ;|  
+|| WinActive("ahk_class ExploreWClass")                              ;| 
+|| WinActive("ahk_class WorkerW")                                    ;| 
+{                                                                    ;|
+WinHWND := WinActive()                                               ;|
+For win in ComObjCreate("Shell.Application").Windows                 ;|
+If (win.HWND = WinHWND)                                              ;|
+{                                                                    ;|
+dir := SubStr(win.LocationURL, 9)                                    ;|
+dir := RegExReplace(dir, "%20", " ")                                 ;|
+Break                                                                ;|
+}                                                                    ;| 
+Run wt, % dir ? dir: A_Desktop                                       ;|
+}                                                                    ;|
+else{                                                                ;|
+Run wt -d .                                                          ;|
+}                                                                    ;|
+return                                                               ;|
 ;---------------------------------------------------------------------o
 
 ;=====================================================================o
@@ -162,15 +162,15 @@ return                                                               ;|
 ;return                                                              ;|
 ;-----------------------------------o---------------------------------o
 ;^+w::                                                               ;| 
- ;Run winword.exe,,UseErrorLevel                                      ;|
+ ;Run winword.exe,,UseErrorLevel                                     ;|
 ;return                                                              ;|
 ;-----------------------------------o---------------------------------o
 ;^+e::                                                               ;|
 ;Run excel.exe,,UseErrorLevel                                        ;|
 ;return                                                              ;|
 ;-----------------------------------o---------------------------------o
-sc027 & e::                                                             ;| 
-Send #{2} 
+sc027 & e::                                                          ;| 
+Send #{2}                                                            ;|
 return                                                               ;|
 ;---------------------------------------------------------------------o
 ;
