@@ -1,9 +1,6 @@
 ;=====================================================================o
 ;                       CapsLock Initializer                         ;|
 ;---------------------------------------------------------------------o
-#Persistent                                                          ;|
-#SingleInstance, Force                                               ;|
-SetKeyDelay, -1                                                      ;|
 SetCapsLockState, AlwaysOff                                          ;| 
 #HotkeyInterval 2000                                                 ;|
 #MaxHotkeysPerInterval 200                                           ;|
@@ -42,8 +39,8 @@ n::BS                                                                ;|
 ;---------------------------------------------------------------------o
 ;                      Ctrl, Alt Compatible                          ;|
 ;---------------------------------------------------------------------o
-;i::Home                                                              ;|
-;o::End                                                               ;|
+i::Home                                                              ;|
+o::End                                                               ;|
 ;---------------------------------------------------------------------o
 
 ;=====================================================================o
@@ -52,8 +49,8 @@ n::BS                                                                ;|
 ;                      CapsLock + ' |  PageUp                        ;|
 ;                      CapsLock + / |  PageDown                      ;|
 ;---------------------------------------------------------------------o
-;u:: PgUp                                                             ;|
-;p:: PgDn                                                             ;|
+u:: PgUp                                                             ;|
+p:: PgDn                                                             ;|
 ;---------------------------------------------------------------------o
 
 ;=====================================================================o
@@ -76,25 +73,21 @@ n::BS                                                                ;|
 ;=====================================================================o
 ;                       CapsLock A-Z Initializer                     ;|
 ;---------------------------------------------------------------------o
-a:: HOME                                                             ;|
+a:: ^a                                                               ;|
 b:: ^b                                                               ;|
 c:: ^c                                                               ;|
-d:: PgDn                                                             ;|
-e:: END                                                              ;|
+d:: ^d                                                               ;|
+e:: ^e                                                               ;|
 f:: ^f                                                               ;|
 g:: ^g                                                               ;|
-i:: F2                                                               ;|
-o:: ^o                                                               ;|
-p:: ^v                                                               ;|
 q:: ^q                                                               ;|
 r:: ^r                                                               ;|
 s:: ^s                                                               ;|
 t:: ^t                                                               ;|
-u:: PgUp                                                             ;|
 v:: ^v                                                               ;|
 w:: ^w                                                               ;|
 x:: ^x                                                               ;|
-y:: ^c                                                               ;|
+y:: ^y                                                               ;|
 z:: ^z                                                               ;|
 ;---------------------------------------------------------------------o
 
@@ -107,7 +100,7 @@ z:: ^z                                                               ;|
 ;---------------------------------------------------------------------o
 /:: ^f                                                               ;|
 ;---------------------------------------------------------------------o
-~sc027:: AppsKey                                                      ;|
+`;:: AppsKey                                                         ;|
 ;---------------------------------------------------------------------o
 esc:: `                                                              ;|
 ;---------------------------------------------------------------------o
@@ -132,26 +125,26 @@ return                                                               ;|
 ;-----------------------------------o---------------------------------o
 ;                            Ctrl + Shift + P                        ;|
 ;---------------------------------------------------------------------o
-!Enter::                                                             ;|
+;^+p::                                                               ;|
 ;---------------------------------------------------------------------o
-If WinActive("ahk_class CabinetWClass")                              ;|  
-|| WinActive("ahk_class ExploreWClass")                              ;| 
-|| WinActive("ahk_class WorkerW")                                    ;| 
-{                                                                    ;|
-WinHWND := WinActive()                                               ;|
-For win in ComObjCreate("Shell.Application").Windows                 ;|
-If (win.HWND = WinHWND)                                              ;|
-{                                                                    ;|
-dir := SubStr(win.LocationURL, 9)                                    ;|
-dir := RegExReplace(dir, "%20", " ")                                 ;|
-Break                                                                ;|
-}                                                                    ;| 
-Run wt, % dir ? dir: A_Desktop                                       ;|
-}                                                                    ;|
-else{                                                                ;|
-Run wt -d .                                                          ;|
-}                                                                    ;|
-return                                                               ;|
+;If WinActive("ahk_class CabinetWClass")                             ;|  
+;|| WinActive("ahk_class ExploreWClass")                             ;| 
+;|| WinActive("ahk_class WorkerW")                                   ;| 
+;{                                                                   ;|
+;WinHWND := WinActive()                                              ;|
+;For win in ComObjCreate("Shell.Application").Windows                ;|
+;If (win.HWND = WinHWND)                                             ;|
+;{                                                                   ;|
+;dir := SubStr(win.LocationURL, 9)                                   ;|
+;dir := RegExReplace(dir, "%20", " ")                                ;|
+;Break                                                               ;|
+;}                                                                   ;| 
+;Run Powershell -nolog, % dir ? dir: A_Desktop                       ;|
+;}                                                                   ;|
+;else{                                                               ;|
+;Run Powershell -nolog, % dir ? dir: A_Desktop                       ;| 
+;}                                                                   ;|
+;return                                                              ;|
 ;---------------------------------------------------------------------o
 
 ;=====================================================================o
@@ -161,118 +154,11 @@ return                                                               ;|
 ;Run notepad.exe,,UseErrorLevel                                      ;|
 ;return                                                              ;|
 ;-----------------------------------o---------------------------------o
-;^+w::                                                               ;| 
- ;Run winword.exe,,UseErrorLevel                                     ;|
+;^+w::                                                               ;|
+;Run winword.exe,,UseErrorLevel                                      ;|
 ;return                                                              ;|
 ;-----------------------------------o---------------------------------o
 ;^+e::                                                               ;|
 ;Run excel.exe,,UseErrorLevel                                        ;|
 ;return                                                              ;|
-;-----------------------------------o---------------------------------o
-~sc027 & e::                                                         ;| 
-Send #{2}                                                            ;|
-return                                                               ;|
-;---------------------------------------------------------------------o
-;
-;=====================================================================o
-;                            Total Commandes                         ;|
-;-----------------------------------o---------------------------------o
-#IfWinActive ahk_exe TOTALCMD64.EXE ahk_class TTOTAL_CMD             ;|
-IsLastKey(key)                                                       ;|
-{                                                                    ;|
-return (A_PriorHotkey == key and A_TimeSincePriorHotkey < 400)       ;|
-}                                                                    ;|
-;-----------------------------------o---------------------------------o
-h::                                                                  ;|  
-ControlGetFocus, ctrl                                                ;|  
-if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|
-Send, {Backspace}                                                    ;|   
-else                                                                 ;|
-Send, h                                                              ;|
-return                                                               ;|
-;-----------------------------------o---------------------------------o
-j::                                                                  ;|  
-ControlGetFocus, ctrl                                                ;|  
-if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
-Send, {Down}                                                         ;|
-else                                                                 ;|  
-Send, j                                                              ;|  
-return                                                               ;|  
-;-----------------------------------o---------------------------------o
-k::                                                                  ;|  
-ControlGetFocus, ctrl                                                ;|  
-if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
-Send, {Up}                                                           ;|
-else                                                                 ;|  
-Send, k                                                              ;|  
-return                                                               ;|  
-;-----------------------------------o---------------------------------o
-l::                                                                  ;|  
-ControlGetFocus, ctrl                                                ;|  
-if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
-Send, {Enter}                                                        ;|
-else                                                                 ;|  
-Send, l                                                              ;|  
-return                                                               ;|  
-;-----------------------------------o---------------------------------o
-g::                                                                  ;|
-ControlGetFocus, ctrl                                                ;|  
-if IsLastKey("g") && (ctrl == "LCLListBox2" )                        ;|   
-|| (ctrl == "LCLListBox1" )                                          ;|   
-{                                                                    ;|
-Send, {Home}                                                         ;|
-}                                                                    ;|
-else                                                                 ;|  
-Send, g                                                              ;|  
-return                                                               ;|
-;-----------------------------------o---------------------------------o
-+g::                                                                 ;|
-ControlGetFocus, ctrl                                                ;|  
-if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
-Send, {END}                                                          ;|
-else                                                                 ;|  
-Send, G                                                              ;|  
-return                                                               ;|
-;-----------------------------------o---------------------------------o
-i::                                                                  ;|
-ControlGetFocus, ctrl                                                ;|  
-if (ctrl == "LCLListBox2" ) || (ctrl == "LCLListBox1" )              ;|  
-send +{F6}                                                           ;|
-else                                                                 ;|  
-Send, i                                                              ;|  
-return                                                               ;|
-;-----------------------------------o---------------------------------o
-d::                                                                  ;|
-ControlGetFocus, ctrl                                                ;|  
-if IsLastKey("d") && (ctrl == "LCLListBox2" )                        ;|   
-|| (ctrl == "LCLListBox1" )                                          ;|   
-{                                                                    ;|
-Send, {F8}                                                           ;|
-}                                                                    ;|
-else                                                                 ;|  
-Send, F8                                                             ;|  
-return                                                               ;|
-;-----------------------------------o---------------------------------o
-c::                                                                  ;|
-ControlGetFocus, ctrl                                                ;|  
-if IsLastKey("c") && (ctrl == "LCLListBox2" )                        ;|   
-|| (ctrl == "LCLListBox1" )                                          ;|   
-{                                                                    ;|
-Send, !{g}                                                           ;|
-Send,{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}         ;|
-}                                                                    ;|
-else                                                                 ;|  
-Send, c                                                              ;|  
-return                                                               ;|
-;-----------------------------------o---------------------------------o
-~sc027:: `;                                                          ;|  
-~sc027 & q::                                                         ;| 
-Send, !{F4}                                                          ;|  
-~sc027 & f::                                                         ;| 
-Send, !{F7}                                                          ;|  
-~sc027 & e::                                                         ;| 
-Send, ^{d}{Down}{Enter}                                              ;|  
-return                                                               ;|  
-;-----------------------------------o---------------------------------o
-#IfWinActive                                                         ;|
 ;---------------------------------------------------------------------o
